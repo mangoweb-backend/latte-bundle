@@ -1,0 +1,25 @@
+{
+  "name": "mangoweb/latte-bundle",
+  "type": "symfony-bundle",
+  "description": "Latte templating engine for Symfony",
+  "license": "MIT",
+  "require": {
+    "php": "~7.1",
+    "nette/forms": "^3.0",
+    "nette/utils": "^3.0",
+    "latte/latte": "^2.5",
+    "symfony/framework-bundle": "^4.1",
+    "symfony/http-kernel": "^4.1"
+  },
+  "require-dev": {
+    "phpstan/phpstan-shim": "dev-master#3167f6253136c58a52f4f0948a9eb46030062b1b",
+    "roave/security-advisories": "dev-master",
+    "symfony/security-bundle": "^4.1",
+    "symfony/translation": "^4.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mangoweb\\LatteBundle\\": "src/"
+    }
+  }
+}

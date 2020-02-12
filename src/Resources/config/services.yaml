@@ -1,0 +1,30 @@
+imports:
+    - { resource: services/symfony_bridge.yaml }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    Latte\Loaders\FileLoader: ~
+    Latte\ILoader: '@Latte\Loaders\FileLoader'
+    Mangoweb\LatteBundle\LatteEngineFactory:
+        public: false
+
+    Latte\Engine:
+        shared: false #  New instance is created each time you ask for the service;
+        factory: ['@Mangoweb\LatteBundle\LatteEngineFactory', 'create']
+        calls:
+            - method: setTempDirectory
+              arguments:
+                  $path: '%kernel.cache_dir%/latte'
+
+            - method: setLoader
+              arguments:
+                  $loader: '@Latte\ILoader'
+
+            - method: setAutoRefresh
+              arguments:
+                  $on: '%kernel.debug%'
+

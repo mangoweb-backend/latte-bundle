@@ -1,0 +1,44 @@
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    ## Simple macros
+    Mangoweb\LatteBundle\SymfonyBridge\SimpleMacroProvider\:
+        resource: '../../SymfonyBridge/SimpleMacroProvider/*'
+        lazy: true
+        tags:
+            - {name: 'latte.simple_macro_provider'}
+
+
+    ## Runtime providers
+    Mangoweb\LatteBundle\SymfonyBridge\SymfonyProvider:
+        tags:
+            - {name: 'latte.provider', provider_name: '_symfony'}
+
+    Mangoweb\LatteBundle\SymfonyBridge\SymfonyProvider\:
+        resource: '../../SymfonyBridge/SymfonyProvider/*'
+        lazy: true
+
+    Mangoweb\LatteBundle\SymfonyBridge\SymfonyProvider\HttpKernelRuntimeProvider:
+        arguments:
+            $fragmentHandler: '@fragment.handler'
+
+    Mangoweb\LatteBundle\SymfonyBridge\SymfonyProvider\LogoutProvider:
+        arguments:
+            $generator: '@?security.logout_url_generator'
+
+
+    ## Filters
+    Mangoweb\LatteBundle\SymfonyBridge\FilterProvider\:
+        resource: '../../SymfonyBridge/FilterProvider/*'
+        lazy: true
+        tags:
+            - {name: 'latte.filter_provider'}
+
+    ## Translation Extractor
+    Mangoweb\LatteBundle\SymfonyBridge\LatteExtractor:
+        tags:
+            - {name: 'translation.extractor', alias: 'latte'}
