@@ -4,6 +4,7 @@ namespace Mangoweb\LatteBundle\SymfonyBridge;
 
 use Nette\Utils\FileSystem;
 use Nette\Utils\Strings;
+use SplFileInfo;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Translation\Extractor\AbstractFileExtractor;
 use Symfony\Component\Translation\Extractor\ExtractorInterface;
@@ -16,7 +17,9 @@ class LatteExtractor extends AbstractFileExtractor implements ExtractorInterface
 	private $prefix = '';
 
 
-	/** @param string|iterable $resource */
+	/**
+	 * @param  string|iterable<string> $resource
+	 */
 	public function extract($resource, MessageCatalogue $catalogue): void
 	{
 		$pattern = '#(?|
@@ -48,8 +51,8 @@ class LatteExtractor extends AbstractFileExtractor implements ExtractorInterface
 
 
 	/**
-	 * @param string|string[] $directory
-	 * @return iterable
+	 * @param  string|string[] $directory
+	 * @return SplFileInfo[]
 	 */
 	protected function extractFromDirectory($directory): iterable
 	{
