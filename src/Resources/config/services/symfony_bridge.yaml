@@ -16,7 +16,7 @@ services:
     ## Runtime providers
     Mangoweb\LatteBundle\SymfonyBridge\SymfonyProvider:
         tags:
-            - {name: 'latte.provider', provider_name: '_symfony'}
+            - {name: 'latte.provider', provider_name: 'symfony'}
 
     Mangoweb\LatteBundle\SymfonyBridge\SymfonyProvider\:
         resource: '../../SymfonyBridge/SymfonyProvider/*'

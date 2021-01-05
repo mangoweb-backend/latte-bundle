@@ -4,7 +4,7 @@ namespace Mangoweb\LatteBundle\SymfonyBridge;
 
 class SymfonyProvider
 {
-	public const PREFIX = '$this->global->_symfony';
+	public const PREFIX = '$this->global->symfony';
 
 	/** @var SymfonyProvider\HttpKernelRuntimeProvider */
 	private $httpKernel;
